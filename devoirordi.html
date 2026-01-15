@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote Access</title>
+
+  <style>
+    /* DESIGN STUFF */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    .access-card {
+      background: #943939;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(30, 57, 167, 0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .access-card h1 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: #ffffff;
+    }
+
+    .passbox {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .passbox input {
+      flex: 1;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 999px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .passbox button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 999px;
+      border: 1px solid #ccc;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .passbox button:hover {
+      background: #e0e0e0;
+    }
+
+    .note {
+      margin-top: 1rem;
+      color: #ffffff;
+      font-size: 0.9rem;
+    }
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- MADE BY CHATGPT -->
+  <div class="access-card">
+    <h1>To access the quote, please enter code</h1>
+    <form id="pass-form">
+      <div class="passbox">
+        <input type="password" placeholder="Enter password" aria-label="Password" />
+        <button type="submit">Submit</button>
+
+
+  <script>
+  
+    const form = document.getElementById('pass-form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Nice try! This password does not work.');
+    });
+  </script>
+
+</body>
+</html>

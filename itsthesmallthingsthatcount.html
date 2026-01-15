@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Overlay Image</title>
+  <style>
+    /* DESIGN STUFF */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #000;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 4rem;
+      font-weight: bold;
+      line-height: 1.2;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      white-space: pre;
+    }
+
+    .overlay-image img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- TEXT DROOPS DOWN -->
+    <div class="overlay-text">
+
+
+
+
+
+
+
+
+
+
+don't you ever look at life and think...
+    </div>
+
+    <!-- IMAGE UNDERNEATH -->
+    <div class="overlay-image">
+      <img src="https://picsum.photos/800/600" alt="Sample Background Image">
+    </div>
+
+  </div>
+
+
+  <!-- ========================================= -->
+  <!--     MADE BY CHATGPT — IMAGE REFRESH       -->
+  <!-- ========================================= -->
+  <script>
+    const img = document.querySelector(".overlay-image img");
+
+    function refreshImage() {
+      img.src = "https://picsum.photos/800/600?t=" + Date.now();
+    }
+
+    setInterval(refreshImage, 3000);
+  </script>
+  <!-- ========================================= -->
+  <!--     END OF CHATGPT FEATURE                -->
+  <!-- ========================================= -->
+
+
+
+  <!-- ========================================= -->
+  <!--     MADE BY CHATGPT — AUDIO AUTOPLAY      -->
+  <!-- ========================================= -->
+  <audio id="bgAudio" src="/Users/thomaslegall/Documents/School 2eme/Web Design/16 quoates/07 Enjoythe moment/Tour Maubourg - Floating On Silence.mp3"></audio>
+
+  <script>
+    // Autoplay audio after a tiny delay
+    // Helps bypass browser autoplay restrictions
+    setTimeout(() => {
+      const audio = document.getElementById("bgAudio");
+      audio.volume = 1.0;
+      audio.play().catch(() => {});
+    }, 0.1);
+  </script>
+  <!-- ========================================= -->
+  <!--     END OF CHATGPT AUDIO FEATURE          -->
+  <!-- ========================================= -->
+
+</body>
+</html>

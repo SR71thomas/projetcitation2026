@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+body {
+      margin: 0;
+      height: 100vh;
+      background: black;
+      overflow: hidden;
+    }
+
+    #text {
+      position: absolute;
+      color: white;
+      font-size: 1em;
+      font-weight: bold;
+	  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	  max-width: 135px;
+	  letter-spacing: -1px;
+
+    }
+  </style>
+</head>
+<body>
+  <div id="text">SLOW MOTION IS BETTER THAN NO MOTION</div>
+
+  <script>
+    const text = document.getElementById("text");
+    let x = 200, y = 200; 
+    let dx = 1, dy = 1;   //speed
+
+    function move() {
+      const rect = text.getBoundingClientRect();
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      // bounce X
+      if (x + rect.width >= screenWidth || x <= 0) {
+        dx = -dx;
+      }
+
+      // bounce Y
+      if (y + rect.height >= screenHeight || y <= 0) {
+        dy = -dy;
+      }
+
+      x += dx;
+      y += dy;
+
+      text.style.left = x + "px";
+      text.style.top = y + "px";
+
+      requestAnimationFrame(move);
+    }
+
+    move();
+  </script>
+</body>
+</html>

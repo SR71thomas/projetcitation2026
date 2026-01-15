@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three Column Repetition</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #28d8ef;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px;
+     
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .phrase {
+      text-align: center;
+      font-size: 1.2rem;
+      font-family: 'Papyrus', fantasy;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+  </div>
+
+  <script>
+    // Dynamically insert 90 repeated phrases
+    const container = document.querySelector('.container');
+    for (let i = 0; i < 90; i++) {
+      const div = document.createElement('div');
+      div.className = 'phrase';
+      div.textContent = 'Why did the chicken cross the road? To get to the other side!';
+      container.appendChild(div);
+    }
+  </script>
+
+</body>
+</html>

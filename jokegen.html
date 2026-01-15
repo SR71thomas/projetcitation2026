@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Joke Generator</title>
+
+<style>
+/* DESIGN STUFF */
+body{margin:0;height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:system-ui
+  ;background:#fff;color:#000}
+
+main{text-align:center;
+  max-width:720px;
+  padding:16px} 
+#joke{font-size:1.25rem;line-height:1.5;margin-bottom:8px} 
+#meta{font-size:0.9rem;margin-bottom:16px} 
+button{padding:10px 16px;background:#000;color:#fff;border:none;cursor:pointer;font-family:inherit}
+</style>
+
+</head>
+<body>
+
+<main>
+<p id="joke">Why did the web developer go broke? Because they used up all their cache.</p>
+<p id="meta"><span id="category"></span></p>
+<button id="newJokeBtn">New Joke</button>
+</main>
+
+<script>
+/* MADE BY CHATGPT */
+const JOKES=[
+  {text:"Why did the web developer go broke? Because they used up all their cache.",cat:"programming"},
+  {text:"I would tell you a UDP joke, but you might not get it.",cat:"networking"},
+  {text:"Debugging: Being the detective in a crime movie where you are also the murderer.",cat:"programming"},
+  {text:"Why do Java developers wear glasses? Because they don't C#.",cat:"programming"},
+  {text:"I told my computer I needed a break, and it said 'No problem—I'll go to sleep.'",cat:"computers"}
+];
+
+const jokeEl=document.getElementById('joke');
+const catEl=document.getElementById('category');
+const newBtn=document.getElementById('newJokeBtn');
+let lastIndex=0;
+
+function randomIndexExcept(last,max){
+  if(max<=1)return 0;
+  let idx=Math.floor(Math.random()*max);
+  while(idx===last)idx=Math.floor(Math.random()*max);
+  return idx;
+}
+
+function showJoke(){
+  const idx=randomIndexExcept(lastIndex,JOKES.length);
+  lastIndex=idx;
+  const {text,cat}=JOKES[idx];
+  jokeEl.textContent=text;
+  catEl.textContent=`#${cat}`;
+}
+
+newBtn.addEventListener('click',showJoke);
+window.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();showJoke();}});
+</script>
+
+</body>
+</html>

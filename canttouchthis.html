@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Click here</title>
+  <style>
+    /* CSS DESIGN STUFF */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #111;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #teleport-text {
+      position: absolute;
+      font-size: 2rem;
+      font-family: Arial, sans-serif;
+      color: #000000;
+      padding: 10px 20px;
+      background: #f3b007;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: left 0.1s ease, top 0.1s ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="teleport-text">Click here</div>
+
+  <!-- BACKGROUND MUSIC -->
+  <audio id="bg-music" src="MC Hammer - U Can't Touch This.mp3" loop></audio>
+
+  <!-- MOVEMENT: Made by ChatGPT -->
+  <script>
+    const textBlock = document.getElementById("teleport-text");
+    const bgMusic = document.getElementById("bg-music");
+
+    function startMusic() {
+      // Try to start immediately; if blocked, it will start on first user interaction below
+      bgMusic.play().catch(() => {});
+    }
+
+    function moveSmooth() {
+      const bodyWidth = window.innerWidth;
+      const bodyHeight = window.innerHeight;
+      const blockWidth = textBlock.offsetWidth;
+      const blockHeight = textBlock.offsetHeight;
+
+      const randomX = Math.floor(Math.random() * (bodyWidth - blockWidth));
+      const randomY = Math.floor(Math.random() * (bodyHeight - blockHeight));
+
+      textBlock.style.left = randomX + "px";
+      textBlock.style.top = randomY + "px";
+    }
+
+    // Start music at the beginning (may be blocked by browser)
+    startMusic();
+
+    // Fallback: start music on first interaction (click/tap/key)
+    const unlockAudio = () => {
+      startMusic();
+      window.removeEventListener("pointerdown", unlockAudio);
+      window.removeEventListener("keydown", unlockAudio);
+      window.removeEventListener("touchstart", unlockAudio);
+    };
+    window.addEventListener("pointerdown", unlockAudio, { once: true });
+    window.addEventListener("keydown", unlockAudio, { once: true });
+    window.addEventListener("touchstart", unlockAudio, { once: true });
+
+    textBlock.addEventListener("mouseenter", moveSmooth);
+
+    moveSmooth();
+  </script>
+</body>
+</html>

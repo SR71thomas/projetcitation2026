@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Overlay Image</title>
+
+  <style>
+    /* DESIGN STUFF */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* TEXT ON LEFT, DROOPING DOWN */
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 20px; /* pushes text to the left */
+      transform: translateY(-50%);
+      color: rgb(66, 56, 56);
+      font-size: 4rem;
+      font-weight: bold;
+      line-height: 1.2;
+      white-space: pre;
+      text-align: left;
+    }
+
+    .overlay-image img {
+      display: block;
+      width: 100vw;     /* FULL width */
+      height: 100vh;    /* FULL height */
+      object-fit: contain; /* ← ensures FULL image shows */
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="overlay-text">
+look
+at
+this
+lo-
+oo
+oo
+oo
+oo
+oo
+ng
+finger !!!!
+    </div>
+
+    <div class="overlay-image">
+      <img src="/Users/thomaslegall/Documents/School 2eme/Web Design/16 quoates/08 long finger/Untitled-3.png" alt="Sample Background Image">
+    </div>
+  </div>
+
+</body>
+</html>

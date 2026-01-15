@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Website</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #f5f5f5;
+    } 
+
+	    /* Desperate salesman text */
+    .sales-text {
+   
+      color: #111;
+      padding: 50px 20px;
+      text-align: left;
+      font-size: 1.5rem;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 0 auto;
+      font-weight: 500;
+	  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+    }
+    .sales-text span {
+      color: #e60000;
+      font-weight: 700;
+    }
+
+    /* Top banner image */
+    .banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* website hight */
+    .hero {
+      height: 0vh;
+    }
+
+    /* button */
+    .footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      background: white;
+    }
+
+    button {
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      background-color: #fde403;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+	  stroke: #111;
+	  stop-color: #111;
+    }
+
+    button:hover {
+      background-color: #333;
+    }
+
+    /* Falling truck animation */
+    .truck {
+      position: fixed;
+      top: -150px;
+      width: 150px;
+      animation: fall linear forwards;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.9;
+      }
+    }
+    /* Price & counter label (bottom-left) */
+    #price-label {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+      z-index: 10000;
+      user-select: none;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top banner area -->
+  <div class="banner">
+    <img src="Hennessey-F-150-Venom-800-Carbonized-Gray-1.jpg"  alt="Banner Image">
+  </div>
+
+  <!-- Sales text -->
+  <div class="sales-text">
+    Folks, listen — I’m not kidding when I say this <span>Ford F-150</span> is the deal of a lifetime! 
+    The power, the style, the performance — it’s everything you’ve ever dreamed of in a truck, and I swear I’ve never seen anything like it. 
+    Please, don’t walk away from this. I’ve got a quota to hit, my manager’s breathing down my neck, and this beast needs a home <em>today</em>! 
+    You won’t just drive — you’ll dominate the road. This isn’t just a truck, it’s a statement. 
+    <span>Buy it now before someone else does!</span>
+  </div>
+  <div class="hero"></div>
+
+  <!-- Button at the bottom -->
+  <div class="footer">
+    <button id="buyButton">Buy</button>
+  </div>
+  <div id="price-label">
+    <span id="total-spent">Total spent: $0</span>
+    <span id="truck-count">Trucks bought: 0</span>
+  </div>
+
+  <!-- Sound -->
+  <audio id="truckSound" src="1030.MP3"></audio>
+
+<!-- falling anim made with chat gpt -->
+  <script>
+  const buyButton = document.getElementById('buyButton');
+  const truckSound = document.getElementById('truckSound');
+  const trucks = [];
+
+  const priceLabel = document.getElementById('price-label');
+  const totalSpentEl = document.getElementById('total-spent');
+  const truckCountEl = document.getElementById('truck-count');
+
+  // Average Ford F-150 price
+  const F150_AVG_PRICE = 38813;
+
+  let totalSpent = 0;
+  let trucksBought = 0;
+
+  function updatePriceLabel() {
+    totalSpentEl.textContent =
+      "Total spent: " +
+      new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0
+      }).format(totalSpent);
+
+    truckCountEl.textContent = "Trucks bought: " + trucksBought;
+  }
+
+  updatePriceLabel();
+
+  buyButton.addEventListener('click', () => {
+    totalSpent += F150_AVG_PRICE;
+    trucksBought += 1;
+    updatePriceLabel();
+
+    truckSound.currentTime = 0;
+    truckSound.play();
+
+    const truck = document.createElement('img');
+    truck.src ="Hennessey-F-150-Venom-800-Carbonized-Gray-1 2.png";
+    truck.classList.add('truck');
+    truck.style.animationDuration = (2 + Math.random() * 2) + 's';
+
+    // Generate a random position that doesn't overlap with existing trucks
+    let position;
+    let attempts = 0;
+    do {
+      position = Math.random() * (window.innerWidth - 150);
+      attempts++;
+    } while (trucks.some(t => Math.abs(t - position) < 160) && attempts < 20);
+
+    truck.style.left = position + 'px';
+    trucks.push(position);
+
+    document.body.appendChild(truck);
+
+    // Remove truck after animation ends and clear its position
+    setTimeout(() => {
+      const index = trucks.indexOf(position);
+      if (index !== -1) trucks.splice(index, 1);
+      truck.remove();
+    }, 2500);
+  });
+
+	
+  </script>
+
+</body>
+</html>
